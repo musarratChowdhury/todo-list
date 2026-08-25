@@ -1,0 +1,101 @@
+<Window x:Class="TodoList.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="400" Width="320"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Section heading -->
+        <TextBlock Grid.Row="0" Text="Docked Countdown Size"
+                   FontSize="13" FontWeight="SemiBold" Foreground="#333"
+                   Margin="0,0,0,16"/>
+
+        <!-- Radio buttons -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+
+            <RadioButton x:Name="RadioSmall" GroupName="DockedSize"
+                         Checked="Size_Checked" Tag="Small" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Small" FontSize="13" Margin="6,0,12,0"/>
+                    <Border Width="110" Height="28" Background="#1E1E2E" CornerRadius="3">
+                        <TextBlock Text="00:00:00" FontFamily="Consolas" FontSize="11"
+                                   FontWeight="Bold" Foreground="#A6E3A1"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton x:Name="RadioMedium" GroupName="DockedSize"
+                         Checked="Size_Checked" Tag="Medium" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Medium" FontSize="13" Margin="6,0,12,0"/>
+                    <Border Width="140" Height="36" Background="#1E1E2E" CornerRadius="3">
+                        <TextBlock Text="00:00:00" FontFamily="Consolas" FontSize="15"
+                                   FontWeight="Bold" Foreground="#A6E3A1"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton x:Name="RadioLarge" GroupName="DockedSize"
+                         Checked="Size_Checked" Tag="Large" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Large" FontSize="13" Margin="6,0,12,0"/>
+                    <Border Width="180" Height="44" Background="#1E1E2E" CornerRadius="3">
+                        <TextBlock Text="00:00:00" FontFamily="Consolas" FontSize="20"
+                                   FontWeight="Bold" Foreground="#A6E3A1"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </RadioButton>
+
+        </StackPanel>
+
+        <!-- Color settings heading -->
+        <TextBlock Grid.Row="2" Text="Task Priority Colors (Hex)"
+                   FontSize="13" FontWeight="SemiBold" Foreground="#333"
+                   Margin="0,0,0,10"/>
+
+        <!-- Color inputs -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,10">
+            <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="High:" VerticalAlignment="Center"/>
+                <TextBox x:Name="HighColorInput" Grid.Column="1" Padding="4"/>
+            </Grid>
+            <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Medium:" VerticalAlignment="Center"/>
+                <TextBox x:Name="MedColorInput" Grid.Column="1" Padding="4"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Low:" VerticalAlignment="Center"/>
+                <TextBox x:Name="LowColorInput" Grid.Column="1" Padding="4"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- Save button -->
+        <Button Grid.Row="5" Content="Save" Width="90" HorizontalAlignment="Right"
+                Padding="0,6" Click="Save_Click"/>
+    </Grid>
+</Window>
