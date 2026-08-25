@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
+using System.Linq;
+
 namespace TodoList;
 
 public partial class MainWindow : Window
@@ -155,7 +157,13 @@ public partial class MainWindow : Window
     {
         if (sender is Button button && button.Tag is TodoItem todoItem)
         {
-            if (todoItem.IsRunning) return; // already has an active countdown
+            if (todoItem.IsRunning) return; // This task is already running
+            
+            if (_allTodos.Any(t => t.IsRunning))
+            {
+                MessageBox.Show("Another task is already running. Please close its countdown before starting a new one.", "Task in progress", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
 
             todoItem.IsRunning = true;
             var countdownWindow = new CountdownWindow(todoItem);

@@ -4,6 +4,7 @@
         xmlns:local="clr-namespace:TodoList"
         Title="Todo List" Height="520" Width="420"
         WindowStartupLocation="CenterScreen"
+        Icon="checkmark.ico"
         Closed="Window_Closed">
     <Window.Resources>
         <local:PriorityColorConverter x:Key="PriorityColorConverter"/>

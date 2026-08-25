@@ -4,6 +4,7 @@
         Title="Countdown" Height="300" Width="380"
         WindowStartupLocation="CenterScreen"
         Closing="Window_Closing"
+        Icon="checkmark.ico"
         ResizeMode="CanMinimize">
     <Grid Background="#1E1E2E">
         <Grid.RowDefinitions>
