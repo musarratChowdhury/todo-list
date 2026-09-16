@@ -16,6 +16,15 @@ A lightweight, native Windows To-Do list application built with C# and WPF (.NET
 ### Prerequisites
 - [.NET SDK](https://dotnet.microsoft.com/download) (Version 10.0 or compatible)
 
+### Project Structure
+```
+todo-list/
+├── src/                  # WPF app source (TodoList.csproj, *.xaml, *.cs)
+├── installer/            # Install scripts (install.ps1, install.bat)
+├── README.md
+└── .gitignore
+```
+
 ### Running the App
 1. Open your terminal or command prompt.
 2. Navigate to the project directory:
@@ -24,8 +33,28 @@ A lightweight, native Windows To-Do list application built with C# and WPF (.NET
    ```
 3. Run the application:
    ```bash
+   dotnet run --project src/TodoList.csproj
+   # or:
+   cd src
    dotnet run
    ```
+
+### Installing (Desktop + Start Menu shortcuts)
+Option 1 — Double-click:
+```
+installer\install.bat
+```
+
+Option 2 — PowerShell (bypasses execution policy):
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File "D:\Projects\todo-list\installer\install.ps1"
+# or from project dir:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\installer\install.ps1
+# or from installer dir:
+cd installer
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+This publishes `src/TodoList.csproj` self-contained `win-x64` to `src\bin\Release\net10.0-windows\win-x64\publish\` then copies to `%LocalAppData%\TodoList` and creates `Desktop\TodoList.lnk` + `Start Menu\Programs\TodoList.lnk`.
 
 ## Usage
 

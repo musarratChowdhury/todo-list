@@ -1,14 +1,15 @@
 $ErrorActionPreference = "Stop"
 
 $appName = "TodoList"
-$publishDir = Join-Path $PSScriptRoot "bin\Release\net10.0-windows\win-x64\publish"
+$projectPath = Join-Path $PSScriptRoot "..\src\TodoList.csproj"
+$publishDir = Join-Path $PSScriptRoot "..\src\bin\Release\net10.0-windows\win-x64\publish"
 $exePath = Join-Path $publishDir "TodoList.exe"
 $installDir = Join-Path $env:LocalAppData $appName
 $targetExe = Join-Path $installDir "TodoList.exe"
 
 if (-not (Test-Path $exePath)) {
     Write-Host "Publishing the application..."
-    dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+    dotnet publish $projectPath -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 }
 
 Write-Host "Installing to $installDir..."

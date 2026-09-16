@@ -181,6 +181,20 @@ public partial class MainWindow : Window
         }
     }
 
+    private void EditButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.Tag is TodoItem todoItem)
+        {
+            var editWindow = new EditWindow(todoItem) { Owner = this };
+            bool? result = editWindow.ShowDialog();
+            if (result == true)
+            {
+                SaveTodos();
+                _todoView?.Refresh();
+            }
+        }
+    }
+
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button button && button.Tag is TodoItem todoItem)

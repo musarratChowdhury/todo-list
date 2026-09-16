@@ -87,7 +87,14 @@
         <CheckBox x:Name="TodayOnlyCheck" Grid.Row="2" Content="Show today's tasks only" Checked="Filter_Changed" Unchecked="Filter_Changed" Margin="0,0,0,10"/>
         
         <!-- Row 3: Task list -->
-        <ListBox x:Name="TodoListBox" Grid.Row="3" HorizontalContentAlignment="Stretch">
+        <ListBox x:Name="TodoListBox" Grid.Row="3" HorizontalContentAlignment="Stretch"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="TaskBorder" Padding="10" Margin="0,4" CornerRadius="5" Background="{Binding Priority, Converter={StaticResource PriorityColorConverter}}">
@@ -102,16 +109,23 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock x:Name="TodoText" Text="{Binding Text}" Grid.Column="0"
-                                           VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,8,0" FontWeight="SemiBold"/>
-                                <Button x:Name="StartButton" Content="▶" Grid.Column="1" Width="25" Height="25"
+                                           VerticalAlignment="Center" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"
+                                           LineStackingStrategy="BlockLineHeight" LineHeight="18" MaxHeight="36"
+                                           Margin="0,0,8,0" FontWeight="SemiBold"
+                                           ToolTip="{Binding Text}"/>
+                                <Button x:Name="EditButton" Content="✎" Grid.Column="1" Width="25" Height="25"
+                                        Foreground="#555" FontWeight="Bold" Margin="0,0,4,0"
+                                        Click="EditButton_Click" Tag="{Binding}" ToolTip="Edit task"/>
+                                <Button x:Name="StartButton" Content="▶" Grid.Column="2" Width="25" Height="25"
                                         Foreground="DarkBlue" FontWeight="Bold" Margin="0,0,4,0"
                                         Click="StartButton_Click" Tag="{Binding}" ToolTip="Start countdown"/>
-                                <Button x:Name="TickButton" Content="✓" Grid.Column="2" Width="25" Height="25"
+                                <Button x:Name="TickButton" Content="✓" Grid.Column="3" Width="25" Height="25"
                                         Foreground="Green" FontWeight="Bold" Margin="0,0,4,0"
                                         Click="MarkDoneButton_Click" Tag="{Binding}" ToolTip="Mark done"/>
-                                <Button x:Name="DeleteButton" Content="✕" Grid.Column="3" Width="25" Height="25"
+                                <Button x:Name="DeleteButton" Content="✕" Grid.Column="4" Width="25" Height="25"
                                         Foreground="Red" FontWeight="Bold"
                                         Click="DeleteButton_Click" Tag="{Binding}" Visibility="Collapsed" ToolTip="Delete"/>
                             </Grid>
